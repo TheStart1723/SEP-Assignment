@@ -140,3 +140,19 @@ except
 select * from table2
 
 --7.
+SELECT firstName+' '+lastName 
+from Person 
+where middleName is null 
+UNION 
+SELECT firstName+' '+lastName+' '+middelName+'.' 
+from Person 
+where middleName is not null
+
+--8.
+select top 1 marks
+from StudentMark 
+where sex = 'F'
+order by marks desc
+
+--9.
+select * from StudentMark order by sex,marks
