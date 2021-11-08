@@ -1,0 +1,16 @@
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ConsoleApp1.exe
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ConsoleApp1.deps.json
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ConsoleApp1.runtimeconfig.json
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ConsoleApp1.runtimeconfig.dev.json
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ConsoleApp1.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ref\ConsoleApp1.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\bin\Debug\net5.0\ConsoleApp1.pdb
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.AssemblyInfo.cs
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ref\ConsoleApp1.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.pdb
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.genruntimeconfig.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\SEP-Assignment\ConsoleApp1\obj\Debug\net5.0\ConsoleApp1.csproj.AssemblyReference.cache
