@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -139,6 +141,170 @@ namespace ConsoleApp1
                 Console.WriteLine("{0}", j);
             }
         }
+
+        public static void CopyArray()
+        {
+            int[] array1 = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+            int[] array2 = new int[10];
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array2[i] = array1[i];
+            }
+            Console.WriteLine("[{0}]", string.Join(", ", array1));
+            Console.WriteLine("[{0}]", string.Join(", ", array2));
+        }
+
+        public static void ManageList()
+        {
+            var toDoList = new List<string>() { "Apple", "Banana", "Orange", "Avacado" };
+            while (true)
+            {
+                Console.WriteLine("Enter command (+ item, - item, or -- to clear)):");
+                var operation = Console.ReadLine().Split(' ');
+                switch (operation[0])
+                {
+                    case "+":
+                        toDoList.Add(operation[1]);
+                        break;
+
+                    case "-":
+                        toDoList.Remove(operation[1]);
+                        break;
+
+                    case "--":
+                        toDoList.Clear();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operation");
+                        break;
+                }
+
+                Console.WriteLine("[{0}]", string.Join(", ", toDoList));
+            }
+        }
+
+        public static void RotateArray()
+        {
+            int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
+            int k = int.Parse(Console.ReadLine());
+            int n = arr.Length;
+            int[] sum = new int[n];
+            for (int i = 1; i <= k; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    sum[(j + i) % n] += arr[j];
+                }
+            }
+            Console.WriteLine("{0}", string.Join(" ", sum));
+        }
+
+        public static void LongestSequence()
+        {
+            while (true)
+            {
+                int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
+                int bestCount = 0, bestElement = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    int repeat = 1;
+                    for (int j = i + 1; j < arr.Length; j++)
+                    {
+                        if(arr[i] == arr[j])
+                        {
+                            repeat++;
+                        } else
+                        {
+                            break;
+                        }
+                    }
+                    if (repeat > bestCount)
+                    {
+                        bestCount = repeat;
+                        bestElement = arr[i];
+                    }
+                }
+                for (int k = 0; k < bestCount; k++)
+                {
+                    Console.Write("{0} ", bestElement);
+                }
+                Console.WriteLine();
+
+            }
+        }
+
+        public static void FrequentNumber()
+        {
+            while (true)
+            {
+                int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
+                int bestoccur = 0, bestelemt = 0;
+                var hashSet = new HashSet<int>(arr);
+                int[] uniq = hashSet.ToArray();
+                Console.WriteLine("{0}", string.Join(" ", uniq));
+                for (int i = 0; i < uniq.Length; i++)
+                {
+                    int occur = arr.Count(e => e == uniq[i]);
+                    if (occur > bestoccur)
+                    {
+                        bestoccur = occur;
+                        bestelemt = uniq[i];
+                    }
+                }
+                Console.WriteLine("The left most of them is {0}", bestelemt);
+
+            }
+        }
+
+        public static void ReverseString()
+        {
+            string s = Console.ReadLine();
+            char[] ch = s.ToCharArray();
+            Array.Reverse(ch);
+            Console.WriteLine(new string(ch));
+            string reverse = string.Empty;
+            for (int i = 0; i < s.Length; i++)
+            {
+                reverse += s[s.Length - i - 1];
+            }
+            Console.WriteLine(reverse);
+        }
+
+        public static void ReverseWords()
+        {
+            char[] seporators = {'.',',', ':', ';', '=', '(', ')', '&', '[', ']', '"', '\'', '\\', '/', '!', '?', '(', ' ', ')'};
+            string s = Console.ReadLine();
+            string result2 = string.Join(string.Empty, System.Text.RegularExpressions.Regex.Split(s, @"([^\w]+)").Reverse());
+            Console.WriteLine(result2);
+        }
+        public static void ExtractPalindrome()
+        {
+            var hs = new SortedSet<string>();
+            char[] seporators = {' ', '.', ',', ':', ';', '=', '(', ')', '&', '[', ']', '"', '\'', '\\', '/', '!', '?', '(', ')' };
+            string s = Console.ReadLine();
+            string[] words = s.Split(seporators);
+            foreach (string i in words)
+            {
+                char[] ch = i.ToCharArray();
+                Array.Reverse(ch);
+                string rv = new(ch);
+                if (rv == i && !hs.Contains(i) && i != "")
+                {
+                    hs.Add(i);
+                }
+
+            }
+            Console.WriteLine("{0}", string.Join(", ", hs));
+        }
+
+        public static void Parse()
+        {
+            Uri url = new Uri(Console.ReadLine());
+            Console.WriteLine($"[protocol] = \"{url.Scheme}\"\n" +
+                $"[server] = \"{url.Host}\"\n" +
+                $"[resource] = \"{url.AbsolutePath}\"");
+        }
+
         static void Main(string[] args)
         {
             //string userColor, astrologySign, addressNumber;
@@ -174,7 +340,16 @@ namespace ConsoleApp1
             //PrintAPyramid();
             //CalculateBirthday();
             //Greeting();
-            CountTo24();
+            //CountTo24();
+            //CopyArray();
+            //ManageList();
+            //RotateArray();
+            //LongestSequence();
+            //FrequentNumber();
+            //ReverseString();
+            //ReverseWords();
+            //ExtractPalindrome();
+            Parse();
         }
     }
 }
