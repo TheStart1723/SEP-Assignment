@@ -83,6 +83,7 @@ namespace ConsoleApp2
             //var to = new DateTime(2021, 12, 31);
             //int days = GetWorkingDays(from, to);
             //Console.WriteLine(days);
+
         }
     }
 }
