@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ecb49ce8-9083-4ae0-be1a-e5f539655538": {
+      "ProjectGuid": "ecb49ce8-9083-4ae0-be1a-e5f539655538",
+      "DisplayName": "MovieShopMVC",
+      "ColorIndex": 0
+    },
+    "4e4768c6-a459-4ebf-82cf-3a7531023bb4": {
+      "ProjectGuid": "4e4768c6-a459-4ebf-82cf-3a7531023bb4",
+      "DisplayName": "ApplicationCore",
+      "ColorIndex": 1
+    },
+    "3f8ec67e-6af1-46f4-8cab-8f7734a0076d": {
+      "ProjectGuid": "3f8ec67e-6af1-46f4-8cab-8f7734a0076d",
+      "DisplayName": "Infrastructure",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

@@ -1,0 +1,12 @@
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\bin\Debug\net6.0\ApplicationCore.deps.json
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\bin\Debug\net6.0\ApplicationCore.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\bin\Debug\net6.0\ref\ApplicationCore.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\bin\Debug\net6.0\ApplicationCore.pdb
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.csproj.AssemblyReference.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.AssemblyInfoInputs.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.AssemblyInfo.cs
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ref\ApplicationCore.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\ApplicationCore\obj\Debug\net6.0\ApplicationCore.pdb

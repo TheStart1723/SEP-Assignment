@@ -1,0 +1,15 @@
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\Infrastructure.deps.json
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\Infrastructure.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\ref\Infrastructure.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\Infrastructure.pdb
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\ApplicationCore.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\ApplicationCore.pdb
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.AssemblyInfo.cs
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.csproj.CopyComplete
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.pdb
