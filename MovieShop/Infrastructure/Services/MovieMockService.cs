@@ -1,7 +1,6 @@
 ﻿using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
-using Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
-    public class MovieService : IMovieService
+    public class MovieMockService : IMovieService
     {
-        private readonly IMovieRepository _movieRepository;
-        public MovieService(IMovieRepository movieRepository)
+        private IMovieRepository _movieRepository;
+        public MovieMockService(IMovieRepository movieRepository)
         {
             _movieRepository = movieRepository;
         }
