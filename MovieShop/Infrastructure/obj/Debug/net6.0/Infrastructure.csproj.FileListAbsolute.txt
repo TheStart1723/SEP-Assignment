@@ -13,3 +13,5 @@ C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\n
 C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.dll
 C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll
 C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.pdb
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\bin\Debug\net6.0\Infrastructure.runtimeconfig.json
+C:\Study\Full-Time Job\Antra\SEP-Assignment\MovieShop\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.cache
