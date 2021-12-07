@@ -20,6 +20,11 @@ namespace Infrastructure.data
         public DbSet<Role> Roles { get; set; }
         public DbSet<MovieGenre> MoviesGenres { get; set;}
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Cast> Casts { get; set; }
+        public DbSet<MovieCast> MoviesCasts { get; set;}
+        public DbSet<Crew> Crewers { get; set; }
+        public DbSet<MovieCrew> MovieCrews { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +34,54 @@ namespace Infrastructure.data
             modelBuilder.Entity<Purchase>(ConfigurePurchase);
             modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
             modelBuilder.Entity<UserRole>(ConfigureUserRole);
+            modelBuilder.Entity<Cast>(ConfigureCast);
+            modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<Crew>(ConfigureCrew);
+            modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
+            modelBuilder.Entity<Review>(ConfigureReview);
+        }
+
+        private void ConfigureReview(EntityTypeBuilder<Review> builder)
+        {
+            builder.ToTable("Review");
+            builder.HasKey(r => new { r.MovieId, r.UserId });
+            builder.Property(r => r.Rating).HasColumnType("decimal(3, 2)");
+            builder.Property(r => r.ReviewText).HasMaxLength(4096);
+        }
+
+        private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> builder)
+        {
+            builder.ToTable("MovieCrew");
+            builder.HasKey(mc => new { mc.MovieId, mc.CrewId, mc.Department, mc.Job });
+            builder.Property(mc => mc.Department).HasMaxLength(128);
+            builder.Property(mc => mc.Job).HasMaxLength(128);
+        }
+
+        private void ConfigureCrew(EntityTypeBuilder<Crew> builder)
+        {
+            builder.ToTable("Crew");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Name).HasMaxLength(128);
+            builder.Property(c => c.Gender).HasMaxLength(64);
+            builder.Property(c => c.TmdbUrl).HasMaxLength(4096);
+            builder.Property(c => c.ProfilePath).HasMaxLength(2084);
+        }
+
+        private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
+        {
+            builder.ToTable("MovieCast");
+            builder.HasKey(mc => new { mc.MovieId, mc.CastId, mc.Character });
+            builder.Property(mc => mc.Character).HasMaxLength(450); 
+        }
+
+        private void ConfigureCast(EntityTypeBuilder<Cast> builder)
+        {
+            builder.ToTable("Cast");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Name).HasMaxLength(128);
+            builder.Property(c => c.Gender).HasMaxLength(64);
+            builder.Property(c => c.TmdbUrl).HasMaxLength(4096);
+            builder.Property(c => c.ProfilePath).HasMaxLength(2084);
         }
 
         private void ConfigureUserRole(EntityTypeBuilder<UserRole> builder)

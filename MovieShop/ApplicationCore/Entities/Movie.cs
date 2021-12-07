@@ -28,7 +28,10 @@ namespace ApplicationCore.Entities
         public string? CreatedBy { get; set; }
         public List<Trailer> Trailers { get; set; }
         public List<Favorite> Favorites { get; set; }
-        public List<Purchase> Purchase { get; set; }
+        public List<Purchase> Purchases { get; set; }
         public List<MovieGenre> GenresofMovie { get; set; }
+        public List<MovieCast> CastsofMovie { get; set; }
+        public List<MovieCrew> CrewsofMovie { get; set; }
+        public List<Review> ReviewsofMovie { get; set; }
     }
 }
