@@ -18,6 +18,8 @@ namespace Infrastructure.data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<MovieGenre> MoviesGenres { get; set;}
+        public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +27,19 @@ namespace Infrastructure.data
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
             modelBuilder.Entity<User>(ConfigureUser);
             modelBuilder.Entity<Purchase>(ConfigurePurchase);
+            modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
+            modelBuilder.Entity<UserRole>(ConfigureUserRole);
+        }
+
+        private void ConfigureUserRole(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.ToTable("UserRole");
+            builder.HasKey(u => new { u.UserId, u.RoleId });
+        }
+
+        private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
+        {
+            builder.HasKey(mg => new { mg.MovieId, mg.GenreId});
         }
 
         private void ConfigurePurchase(EntityTypeBuilder<Purchase> builder)
@@ -41,10 +56,12 @@ namespace Infrastructure.data
             builder.HasKey(u => u.Id);
             builder.Property(u => u.FirstName).HasMaxLength(128);
             builder.Property(u => u.LastName).HasMaxLength(128);
+            builder.HasIndex(u => u.Email).IsUnique();
             builder.Property(u => u.Email).HasMaxLength(256);
             builder.Property(u => u.HashedPassword).HasMaxLength(1024);
             builder.Property(u => u.Salt).HasMaxLength(1024);
             builder.Property(u => u.PhoneNumber).HasMaxLength(16);
+            builder.Property(u => u.IsLocked).HasDefaultValue(false);
         }
 
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)

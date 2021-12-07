@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AWVNNAUvEQybd7rU/Mw2scnmc4x6JtEB5TYwzFusDAhmjaAOqUyl0VPjYcWarkGkpxlrTojC6dFomCWWw311uQ==",
+  "dgSpecHash": "3koeYBpNuclXfmKj7TGQUeVNySI6fZx5E6baQlD7pcAXljNyRhvnRvkZYzpm1/PmNu0yN1efShkFDQtwZvyL2g==",
   "success": true,
   "projectFilePath": "C:\\Study\\Full-Time Job\\Antra\\SEP-Assignment\\MovieShop\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\Dream\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.0\\microsoft.entityframeworkcore.design.6.0.0.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.0\\microsoft.entityframeworkcore.relational.6.0.0.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.0\\microsoft.entityframeworkcore.sqlserver.6.0.0.nupkg.sha512",
+    "C:\\Users\\Dream\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.0\\microsoft.entityframeworkcore.tools.6.0.0.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.0\\microsoft.extensions.caching.memory.6.0.0.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

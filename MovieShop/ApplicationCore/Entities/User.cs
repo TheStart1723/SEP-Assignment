@@ -24,6 +24,7 @@ namespace ApplicationCore.Entities
 
         public List<Favorite> Favorites { get; set; }
         public List<Purchase> Purchases { get; set; }
+        public List<UserRole> RolesofUser { get; set; }
 
     }
 }

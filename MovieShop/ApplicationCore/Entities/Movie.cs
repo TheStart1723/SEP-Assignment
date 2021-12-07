@@ -29,5 +29,6 @@ namespace ApplicationCore.Entities
         public List<Trailer> Trailers { get; set; }
         public List<Favorite> Favorites { get; set; }
         public List<Purchase> Purchase { get; set; }
+        public List<MovieGenre> GenresofMovie { get; set; }
     }
 }
