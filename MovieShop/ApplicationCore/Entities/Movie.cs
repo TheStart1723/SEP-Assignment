@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,9 @@ namespace ApplicationCore.Entities
         public DateTime? UpdatedDate { get; set; }
         public string? UpdatedBy { get; set; }
         public string? CreatedBy { get; set; }
+        [NotMapped]
+        public decimal? Rating { get; set; }
+
         public List<Trailer> Trailers { get; set; }
         public List<Favorite> Favorites { get; set; }
         public List<Purchase> Purchases { get; set; }
