@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.RepositoryInterfaces;
 using Infrastructure.data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,28 +16,30 @@ namespace Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public T Add(T entity)
+        public async Task<T> Add(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public T Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<T> GetAll()
-        {
-            return _dbContext.Set<T>().ToList();
-        }
-
-        public virtual T GetById(int id)
-        {
-            var entity = _dbContext.Set<T>().Find(id);
+            _dbContext.Set<T>().Add(entity);
+            await _dbContext.SaveChangesAsync();
             return entity;
         }
 
-        public T Update(T entity)
+        public async Task<T> Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<T>> GetAll()
+        {
+            return await _dbContext.Set<T>().ToListAsync();
+        }
+
+        public async virtual Task<T> GetById(int id)
+        {
+            var entity = await _dbContext.Set<T>().FindAsync(id);
+            return entity;
+        }
+
+        public async Task<T> Update(T entity)
         {
             throw new NotImplementedException();
         }

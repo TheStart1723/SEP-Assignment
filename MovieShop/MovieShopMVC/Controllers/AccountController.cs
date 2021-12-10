@@ -1,10 +1,17 @@
 ﻿using ApplicationCore.Models;
+using ApplicationCore.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MovieShopMVC.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IAccountService _accountService;
+        public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -12,9 +19,10 @@ namespace MovieShopMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(UserRegisterRequestModel registerRequestModel)
+        public async Task<IActionResult> Register(UserRegisterRequestModel userRegisterRequestModel)
         {
-            return View();
+            var user = await _accountService.RegisterUser(userRegisterRequestModel);
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
@@ -24,8 +32,13 @@ namespace MovieShopMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginRequestModel loginRequestModel)
+        public async Task<IActionResult> Login(LoginRequestModel loginRequestModel)
         {
+            var user = await _accountService.ValidateUser(loginRequestModel);
+            if (user == null)
+            {
+                return View("Error");
+            }
             return View();
         }
 

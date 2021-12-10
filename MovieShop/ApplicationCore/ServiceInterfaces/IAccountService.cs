@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.ServiceInterfaces
 {
-    public interface IMovieService
+    public interface IAccountService
     {
-        Task<IEnumerable<MovieCardResponseModel>> GetHighestGrossingMovies();
-        Task<MovieDetailsResponseModel> GetMovieDetailsById(int id);
+        Task<int> RegisterUser(UserRegisterRequestModel model);
+        Task<UserLoginResponseModel> ValidateUser(LoginRequestModel model);
     }
 }

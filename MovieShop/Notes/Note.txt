@@ -1,0 +1,384 @@
+
+.NET Framework - Windows only
+.NET 1.1 (April 2003) => Also had ASP.NET for building web apps 
+.NET 2.0 (November 2005): had generic collections, iterators, new features for ASP.NET, nullable types, etc.
+.NET 3.0 (November 2006): featured WPF (Windows Presentation Foundation), WCF (Windows Communication Foundation), WWF (Windows Workflow Foundation).
+.NET 3.5 (2007): LINQ, AJAX support etc
+.NET 4.0 (2010): Tasks
+.NET 4.5 (2012): async/await in C#
+.NET 4.5.2, 4.6, 4.7 and 4.8 etc...
+
+.NET - Cross Platform => Win, Mac, Linux
+       Open Source, GitHub, Module bases and Cloud Ready
+       Built in DI (Dependency Injection)
+
+You can create .NET apps for many operating systems, including:
+ Windows
+ macOS
+ Linux
+ Android
+ iOS
+ tvOS
+ watchOS
+
+Supported processor architectures include:
+ x64
+ x86
+ ARM32
+ ARM64
+
+.NET Core 1.0 2016
+.NET Core 2.0 2017
+.NET Core 2.2 2018 
+.NET Core 3.0 2019  
+.NET 5        2020 November => Version number 4 was skipped to avoid confusion between .NET Framework and .NET Core/5+. 
+                               The name "Core" was dropped from ".NET Core" to make clear that this implementation of .NET is now the main one.
+.NET 6        2021 November => ASP.NET Core 6 (Web App, Web API), Entity Framework Core 6 ORM
+
+ASP.NET Core => Web
+
+ASP.NET Core MVC
+
+Key Concepts =>
+Model
+View => UI Elements => button, input, radio buttons, dropdowns =>
+		HTML => CSS, JS  [ Tag Helpers and HTML Helpers => MVC Specific => Converted to HTML and send to the browser ]
+	 => Browser =>
+Controller
+
+HTTP => GET (Browser)
+
+ASP.NET Core => respond to the request
+
+ASP.NET MVC
+Terminal 
+Postman =>
+
+C#, Java, Python HTTP 
+
+Domain GET
+http://www.example.com/employee/details/22
+http://www.example.com/employee/Top30SalaryEmployees
+
+// create a new employee
+http://www.example.com/employee/create
+
+1. URL meaningful =>
+ 1 part is Domain
+ 2nd part is MVC Controller
+ 
+ 
+ C# class that inherits from Controller 
+ 
+ // MVC Controller
+ public class EmployeeController : Controller
+ {
+ 
+   [HttpGet]
+   public IActionResult Create() 
+   {
+		return View();
+   }
+   
+   [HttpPost]
+   public IActionResult Create(Employee employee) 
+   {
+		// save to database
+		// return View("Home");
+   }
+ 
+	// will have multiple action methods
+	// Action method name should be matching with 3rd part of the URL
+	// Attributes in C#
+	[HttpGet]
+	public IActionResult Details(int id) 
+	{
+		// Logic
+		//.. go to database and get employee details for 22
+		// Model = represents the data that you need for the View
+		// Entities => represents the columns/properties Tables
+		var employeeDetails = EmployeeService.GetEmployeeDetails(id);
+		return View(employeeDetails);
+		
+	}
+	
+	[HttpGet]
+	public IActionResult Top30SalaryEmployees () 
+	{
+		var employees = EmployeeService.GetTopEmployees();
+		return View(employees);
+		
+	}
+	
+	}
+	// Entity class
+	public class Employee 
+	{
+		// 20 prepoties
+	}
+	
+	// Model
+	public class EmployeeDetailsResponseModel 
+	{
+		// 5 properties
+	}
+	
+	
+ }
+
+
+Make sure our code is properly structured and should be maintainable and testable, loosely coupled 
+Clean-architecture, Onion Architecture, n-Layer architecture
+
+1. ApplicationCore is the base of your project => it does not have any dependencies on any other projects
+	Entities
+	Models
+	Helpers
+	Interfaces => Repository Interfaces, Service Interfaces
+
+2. Infrastructure => Reference ApplicationCore
+	Data Logic (Implementation of Repository Interfaces) => Savin to database, getting data from database, Repository classes
+	Service - Business Logic ((Implementation of Service Interfaces)) => Registering User, Hash his/her password, sending emails,  
+
+3. UI ASP.NET MVC => References ApplicationCore and Infrastructure
+		Controllers
+		Views
+		
+in ASP.NET Core 6 version we dont have startup.cs file
+in previous ASP.NET Core versions we had both program.cs and startup.cs
+ASP.NET 6 Unifies Startup.cs and Program.cs into a single Program.cs file.
+
+in older asp.net core Startup has two important methods
+	1. ConfigureServices => DI
+	2. Configure	=> Middlewares
+
+Repository => Abstract the data access Logic => They get the data from Database and map  them to Entity Classes
+
+1. RAW => Low Level API => ADO.NET => SQLCommand, SQLConnection => execute SP, execute SQL and then map the data to object
+        => Manually
+2. Dapper => micro ORM => Object Relational Mapping => StackOverflow
+3. Entity Framework Core =>  
+
+
+Services => Contain the actual business Logic and they return the Models to the MVC App Controller
+
+List<Movie> Entity objects   in a method => List<MovieResponseModel> Models
+
+
+List<MovieCardResponseModel>
+
+public class MovieCardResponseModel 
+{
+	Id
+	Title
+	PosterUrl
+}
+
+
+Dependency Injection => First Class Citizen in .NET Core
+
+Tightly Coupled Code, hard to test and maintain and add any addi
+new() convenient => 
+
+Higher Level Abstractions
+
+
+IMovieRepository : IRepository
+{
+	7 methods
+}
+
+MovieRepository : IMovieRepository 
+{
+	Implementation 7 methods
+	EF Core to access the database
+	SQL Server
+}
+
+DapperMovieRepository: IMovieRepository 
+{
+	// Dapper with Postgres Database
+}
+
+
+1. Create an Abstractions => interfaces
+2. Use Constructor Injection, create private readonly filed for the interfaces
+	Inject the actual implementation with DI from Startup/Program.cs
+	You can change the implementations as needed
+
+
+3 ways => 99 % Constructor Injection
+			Method Injection
+			Property Injection
+
+HomeController controller = new HomeController(new );
+
+.NET Framework they didn't had DI support built-in
+3rdy party DI IOC
+Autofac
+Ninject
+
+20 controller in ASP.NET
+
+3 controllers wanna use MovieService for IMovieService
+4 controllers wanna use MovieMOckService for IMovieService
+
+AutoFac 
+
+
+TO Access any Database in C#, 
+1. ADO.NET
+2. ORM option
+	micro ORM => Dapper
+	ORM=> Entity Framework
+
+
+ADO.NET
+	1. Make sure you have database ready
+	2. To get any data from database we need to use classes such as SqlConnection, SqlCommand, then execute them and
+		map the SQL data to the objects
+	3. You need to write lots of repeated code through out your application, takes lots of time for larger application
+    4. Performance wise very good
+ORM
+	Dapper- micro ORM
+		1. Make sure you have database ready
+		2. Built on top of ADO.NET classes, they are collection of extension methods
+		3. You need to write SQL Statements and write SP
+		4. Mapping of the objects is done easily by dapper.(saves the time)
+		5. Performance wise as good as ADO.NET
+
+	Entity Framework
+		1. You can create a complete database without writing single line of SQL Code, by using just C# 
+			objects and some special classes in EF using Migrations.
+		2. You dont need to write any SP, SQL statements to get the data, write LINQ and have EF translate the LINQ to SQL
+			and it will execute and automatically map the data to C# objects
+		3. EF performance is a bit slower compared to dapper or ado.net but EF Core 6, its performance is as good as Dapper
+			in lots of cases
+		4. If you write in-efficient LINQ statements => then EF will generate in-efficient SQL statements.
+
+
+		EF has two most important classes
+		1. DbContext => Represents your database
+		2. DbSet => Represents your Table
+
+Steps for Creating the Database using EF Core
+	we had two approaches to use EF
+	1. *** Code-First approach => Create the database with C# code and use EF ***
+	2. Database-First approach => you need to have database already created and then use EF 
+
+	1. Extension methods
+	2. Func and Action delegates
+	3. LINQ methods => 
+		1. First() => more than 1 match it will give first match, if no matches then throw exception
+		2. FirstOrDefault() => more than 1 match it will give first match,if no matches then return default value
+		3. Single() =>  more than 1 match or 0 matches then exception is thown, it will work only when there is exact match
+		4. SingleOrDefault() =>  more than 1 match then exception is thrown, 0 matches then default value, 1 match then it will give that output
+		5. Where()
+		6. Any()
+		7. GroupBy()
+		8. Select()
+	4. Anonymous Types and methods
+
+
+EF Core to create the Database, Migrations to create/change database
+
+1. Configure the connection string in our application so that we can use that connection string with EF
+    1. SQL Server name, database name, authentication
+2. We configure connection string inside the appsettings.json
+3. DbContext=> represents our database and DbSet=> Represents our table
+4. Install required Entity Framework Packages EF Core, EF Core SQl Server, Ef Core design
+in both Infrastructure and MVC projects 
+Create our custom DbContext class that inherits from DbContext class
+5. Inject the connection string into the MovieShopSbContext constructor using DbContextOptions from 
+Startup or Program.cs file
+6. Create our Genre Table, ORM (Object Relational Mapping) by creating Genre Entity (object) with all the required
+properties based on columns
+7. Create the DbSet property for the entities
+8. Create your very first migration
+9. EF has convention where if you have a property called Id then it will by default make it as PK
+10. Run update database to execute the migration 
+11. WE have DataAnnotations and Fluent API to model our database and table
+12. Whenever you change your entity/model with DataAnnotations or Fluent API, make sure you add a new Migration
+and update-database, always give meaningful name to your migrations, do not give xyz, abc, test names
+13. To create Many - Many relationship we need Junction table in Relational database
+
+
+EF COre 5 and before when we have property of string
+
+		public string Title { get; set; } // it created them as nullable types in SQL Server
+        public string Overview { get; set; }
+
+
+
+Architecture of our Project
+
+Step 1 : Create Repository Interface based on your needs (repo per table), IGenreRepository, IUserRepository that inherits from IRepository, inside ApplicationCore 
+project, inside RepositoryInterfaces folder
+Step 2 : Implement Repository interfaces inside the Infrastructure project inside Repository folder and make sure the repositories inherit from base Repository<T>
+		Replace T with the entity type for example MovieRepository will inherit from Repository<Movie>
+Step 3: Create Service Interfaces (business logic) inside the ServiceInterfaces folder in ApplicationCore Project for ex: IMovieService, IGenreService
+		Services should always return Models rather than Entities, create Required Models inside th Models folder such as GenreModel, MovieCardResponseModel etc
+Step 4: Implement Services inside the services folder inside Infrastructure Project, Services will use DI with repository interfaces
+		Register DI for both Repositories and Services interfaces in the Program.cs or startup.cs (.NET 5 and older)
+Step 5 : Call the services with DI from the required Controllers. For example HomeController will use MovieService with DI of IMovieService 
+ 
+
+In MVC we have something called Partial Views, that help us re-use any UI in our MVC application
+MovieCard partial View => 
+Partial Views will always be used inside a parent view
+Parent View needs to send the model data to the Partial View
+Partial View will be located inside Shared Folder
+
+Index.cshtml (parent View) => IEnumerable<ApplicationCore.Models.MovieCardResponseModel>   
+    => foreach(var moviecard in Model ) {
+            call the partial view => moviecard
+    }
+    => MovieCard (partial view) => MovieCardResponseModel
+
+
+Pass the data from View to Controller Action method when you post
+
+Model Binding <<=>>
+
+ASP.NET will look for incoming http request => and it will look for input elements and it will look for name attributes
+and if the method paramters of our action methods have same name then it will automatically get the data from the input 
+
+
+email and password => 
+
+Password = abc!23!!
+1. Storing in plain text - Wrong
+2. Encrypt the password => ENC1  => jfhlksdfhklsfn => better than plain text but still wrong
+3. Hashing the password => Hash1 => fklidhfaaadkalsdhald => much better than encryption => One-Way
+4. Hashing with Random Salt => Right approach
+
+Registration => 
+
+U1 => [abc!23!! + slfhsdfhskhf] => HASH1 => 098fsofisdhfisdofjsdlfj
+U2 => [XYN^*&^  + 87f9adfdoaih] => HASH1 => 4568-0egpofsgopsgsfkjkfs
+U3 => [abc!23!! + 907809sufdsf] => HASh1 => 96-04isdfkjgpogspokjs;mf
+
+Login
+
+Email		Password
+abc@abc.com abc!23!! =>  we get the password the user entered [abc!23!! + slfhsdfhskhf]  HASH1 => 098fsofisdhfisdofjsdlfj
+Compare this hash with databse hash for the user
+If both are equal then password is correct
+
+Hashing => Never ever create your own hashing algorithm, alwasy use industry tried and tested hashing algorithms
+SHA256, SHA512
+
+Browser (100's) =>  SERVER (ASP.NET Core)
+Http Request =>  Process the request => Database, http call =>
+Thread Pool => Collection of threads => 100
+async/await were introduced in .NET 4.5 2012, C# 5=> Task => Promise
+I/O bound operations => 
+
+1. Make the method async and retuen type should be 
+  void somethod() 
+  async Task somethod()
+
+  int SomeotherMethod()
+  async Task<int>SomeotherMethod()
+
+Task or Task<T>
