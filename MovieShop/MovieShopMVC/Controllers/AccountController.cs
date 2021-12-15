@@ -1,6 +1,9 @@
 ﻿using ApplicationCore.Models;
 using ApplicationCore.ServiceInterfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MovieShopMVC.Controllers
 {
@@ -39,8 +42,31 @@ namespace MovieShopMVC.Controllers
             {
                 return View("Error");
             }
-            return View();
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.DateOfBirth, user.DateOfBirth.GetValueOrDefault().ToString()),
+                new Claim("Language", "English")
+            };
+
+            var claimIdentity = new ClaimsIdentity(claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new
+                ClaimsPrincipal(claimIdentity));
+
+            return LocalRedirect("~/");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
+        }
     }
 }

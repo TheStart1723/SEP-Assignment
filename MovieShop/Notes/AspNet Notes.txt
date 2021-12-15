@@ -382,3 +382,23 @@ I/O bound operations =>
   async Task<int>SomeotherMethod()
 
 Task or Task<T>
+
+3 Kinds of access levels
+
+1. Annonymous Pages => Home, Movie Details, Cast details
+2. Authenticated  => GET  => purchases, favorites, reviews
+					 POST => Purchase Movie, Favorite Movie, Write a Review
+3. Auth and Authorized with Specific Role
+					=> POST Admin => Create Movie, Create Cast, Create Genre
+					=> GET BA =>  Show Top Purchased Movies Report (by month, year, dates)
+
+old ASP.NET Framework => HttpModules and HttpHandlers
+
+ASP.NET Core => Middleware=> new in .NET Core
+
+In ASP.NET Core 5 and before we had startup.cs where we registered middlewares in Configure  method
+We registered DI in CinfigureServices method in startup.cs
+
+Every View in ASP.NET MVC will inherit from layout view so that the Nav bar is visible in all the views
+
+Foe example when you go to home/details/2 => details.cshtml view (HTML will be placed in RenderBody())

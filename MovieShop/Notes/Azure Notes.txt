@@ -1,0 +1,22 @@
+Azure Dev OPS
+
+Team City => Jetbrains => 
+Jenkins
+Travis CI 
+
+
+CI and CD
+MovieShop => 5 developers => share code => GitHub => check in code frequently => 5 -6 times a day
+
+1 Repo=> CI will take the code from GitHub and build the code , agents => and if u have any build errors=> Flag
+automatiacally email to the team, build failed
+build success => CI will also automatially run the unit test cases also
+
+CATCH any Early issues and Nip them in the bud => 
+
+Package the code and make it ready to deploy, 
+
+
+CD => Continuous Delivery is the process to deploy the code to different environemnts => QA (), Staging() , PROD(Live)
+
+Schedule => 2 times a day
