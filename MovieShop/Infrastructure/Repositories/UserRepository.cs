@@ -21,5 +21,16 @@ namespace Infrastructure.Repositories
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
             return user;
         }
+
+        public async override Task<User> GetById(int id)
+        {
+            var userDetails = await _dbContext.Users.Include(u => u.Favorites).ThenInclude(u => u.Movie)
+                .Include(u => u.Purchases).ThenInclude(u => u.Movie)
+                .Include(u => u.RolesofUser).ThenInclude(u => u.Role)
+                .Include(u => u.ReviewsofUser).FirstOrDefaultAsync(u => u.Id == id);
+
+            if(userDetails == null) return null;
+            return userDetails;
+        }
     }
 }

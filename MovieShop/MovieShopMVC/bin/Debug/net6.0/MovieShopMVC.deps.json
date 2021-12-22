@@ -14,12 +14,14 @@
           "Microsoft.EntityFrameworkCore.Design": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.0",
+          "bootstrap-dialog": "3.3.4.1"
         },
         "runtime": {
           "MovieShopMVC.dll": {}
         }
       },
+      "bootstrap-dialog/3.3.4.1": {},
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -2274,6 +2276,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "bootstrap-dialog/3.3.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xjJhZehd2OLP6+IeZBmlUecWwOKV91STNNwDfGqIXSlVzMSoMPa2TcYmzJEzyxQnz4K9Fwqs1PagXwgmAIfwGw==",
+      "path": "bootstrap-dialog/3.3.4.1",
+      "hashPath": "bootstrap-dialog.3.3.4.1.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

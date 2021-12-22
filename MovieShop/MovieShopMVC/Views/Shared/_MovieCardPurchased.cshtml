@@ -1,0 +1,44 @@
+﻿@model ApplicationCore.Models.PurchaseResponseModel
+
+<div class="card mb-4 shadow bg-light">
+    <img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title" />
+        <button type="button" class="btn card-footer-fluid text-center bg-dark bg-opacity-75 text-white"
+         data-bs-toggle="modal" data-bs-target="#purchaseModal" >
+            <small>Purchased Details</small>
+        </button>
+</div>
+
+<div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h6 class="modal-title" id="purchaseModalLabel">Purchased Details</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+              <div class="row" style="font-size:13px">
+                  <div class="col-3">
+                      <div class="card">
+                          <img class="img-fluid" src="@Model.PosterUrl" alt="@Model.Title" />
+                      </div>
+                  </div>
+                  <div class="col">
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                              <small>Purchased Date <span class="badge badge-pill bg-dark">@Model.PurchaseDateTime.GetValueOrDefault().ToString("MMM d yyyy")</span></small>
+                          </li>
+                          <li class="list-group-item">
+                              <small>Price <span class="badge badge-pill bg-dark">@Model.TotalPrice.Value.ToString("C2")</span></small>
+                          </li>
+                          <li class="list-group-item">
+                              <small>Purchase Number <span class="badge badge-pill bg-dark">@Model.PurchaseNumber</span></small>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+     </div>
+   </div>
+ </div>

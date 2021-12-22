@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Models;
+﻿using ApplicationCore.Entities;
+using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
 using System;
@@ -16,24 +17,76 @@ namespace Infrastructure.Services
         {
             _userRepository = userRepository;
         }
-        public Task<bool> EditUserProfile(UserDetailsResponseModel userDetails)
+        public async Task<bool> EditUserProfile(UserDetailsModel model)
         {
-            throw new NotImplementedException();
+            var dbUser = await _userRepository.GetUserByEmail(model.Email);
+            if (dbUser != null)
+            {
+                return false; // email already exists
+            }
+            var user = new User
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                DateOfBirth = model.DateOfBirth,
+                PhoneNumber = model.PhoneNumber
+            };
+            await _userRepository.Update(user);
+            return true;
+
         }
 
-        public Task<List<UserDetailsResponseModel>> GetUserDetails(int id)
+        public async Task<UserDetailsModel> GetUserDetails(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(id);
+            var userDetails = new UserDetailsModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DateOfBirth = user.DateOfBirth,
+                PhoneNumber = user.PhoneNumber
+            };
+
+            return userDetails;
         }
 
-        public Task<List<MovieCardResponseModel>> GetUserFavoritedMovies(int id)
+        public async Task<List<MovieCardResponseModel>> GetUserFavoritedMovies(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(id);
+            var favorites = new List<MovieCardResponseModel>();
+            foreach (var favorite in user.Favorites)
+            {
+                favorites.Add(new MovieCardResponseModel
+                {
+                    Id = favorite.Id,
+                    PosterUrl = favorite.Movie.PosterUrl,
+                    Title = favorite.Movie.Title,
+                });
+            }
+            return favorites;
         }
 
-        public Task<List<MovieCardResponseModel>> GetUserPurchasedMovies(int id)
+        public async Task<List<PurchaseResponseModel>> GetUserPurchasedMovies(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(id);
+            var purchases = new List<PurchaseResponseModel>();
+            foreach (var purchase in user.Purchases)
+            {
+                purchases.Add(new PurchaseResponseModel
+                {
+                    Id = purchase.Id,
+                    PosterUrl = purchase.Movie.PosterUrl,
+                    Title = purchase.Movie.Title,
+                    PurchaseDateTime = purchase.PurchaseDateTime,
+                    PurchaseNumber = purchase.PurchaseNumber,
+                    TotalPrice = purchase.TotalPrice,
+                });
+            }
+            return purchases;
         }
     }
 }

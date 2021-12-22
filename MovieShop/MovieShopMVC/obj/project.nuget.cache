@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Bdw8NeSrhUyMsd6sAotFKrdyTfpEs3qvh03dKvwgkzMHnP4fcNEsnSFJ2v3z52M3WAK7KpEimAZGReAbmsEVvw==",
+  "dgSpecHash": "gkeDh2IX8Gm+lxif000coi/SnjG1EIDO0ljXPA7VJqCzNOyEMjreMafDZXLz7gsUcspjsxM69NFYxsW0A2Db5A==",
   "success": true,
   "projectFilePath": "C:\\Study\\Full-Time Job\\Antra\\SEP-Assignment\\MovieShop\\MovieShopMVC\\MovieShopMVC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dream\\.nuget\\packages\\bootstrap-dialog\\3.3.4.1\\bootstrap-dialog.3.3.4.1.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

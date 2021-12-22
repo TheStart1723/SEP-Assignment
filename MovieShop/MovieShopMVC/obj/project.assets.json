@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "bootstrap-dialog/3.3.4.1": {
+        "type": "package"
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -3114,6 +3117,20 @@
     }
   },
   "libraries": {
+    "bootstrap-dialog/3.3.4.1": {
+      "sha512": "xjJhZehd2OLP6+IeZBmlUecWwOKV91STNNwDfGqIXSlVzMSoMPa2TcYmzJEzyxQnz4K9Fwqs1PagXwgmAIfwGw==",
+      "type": "package",
+      "path": "bootstrap-dialog/3.3.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bootstrap-dialog.3.3.4.1.nupkg.sha512",
+        "bootstrap-dialog.nuspec",
+        "content/content/bootstrap-dialog.css",
+        "content/content/bootstrap-dialog.less",
+        "content/scripts/bootstrap-dialog.js"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -9625,7 +9642,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.0",
+      "bootstrap-dialog >= 3.3.4.1"
     ]
   },
   "packageFolders": {
@@ -9697,6 +9715,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "bootstrap-dialog": {
+            "target": "Package",
+            "version": "[3.3.4.1, )"
           }
         },
         "imports": [

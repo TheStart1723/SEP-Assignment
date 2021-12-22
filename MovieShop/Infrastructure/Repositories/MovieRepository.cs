@@ -26,7 +26,7 @@ namespace Infrastructure.Repositories
         {
             var movieDetails = await _dbContext.Movies.Include(m => m.CastsofMovie).ThenInclude(m => m.Cast)
                     .Include(m => m.GenresofMovie).ThenInclude(m => m.Genre).Include(m => m.Trailers)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync(m => m.Id == id);
 
             if (movieDetails == null) return null;
             var rating = await _dbContext.Reviews.Where(m => m.MovieId == id).DefaultIfEmpty()

@@ -43,6 +43,7 @@ namespace MovieShopMVC.Controllers
                 return View("Error");
             }
 
+            //create claims to store the object info in specific type
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, user.Email),
@@ -53,9 +54,11 @@ namespace MovieShopMVC.Controllers
                 new Claim("Language", "English")
             };
 
+            //store the claims
             var claimIdentity = new ClaimsIdentity(claims,
                 CookieAuthenticationDefaults.AuthenticationScheme);
 
+            //create cookie
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new
                 ClaimsPrincipal(claimIdentity));
 
@@ -65,6 +68,7 @@ namespace MovieShopMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            // invalidate the cookie
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }

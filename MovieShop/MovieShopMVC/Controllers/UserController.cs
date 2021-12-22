@@ -1,11 +1,12 @@
-﻿using ApplicationCore.ServiceInterfaces;
+﻿using ApplicationCore.Models;
+using ApplicationCore.ServiceInterfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace MovieShopMVC.Controllers
 {
-    [Authorize]
+    [Authorize] 
     public class UserController : Controller
     {
         //Filters
@@ -18,26 +19,40 @@ namespace MovieShopMVC.Controllers
         public async Task<IActionResult> Purchases()
         {
             var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var purchases = _userService.GetUserPurchasedMovies(userId);
+            var purchases = await _userService.GetUserPurchasedMovies(userId);
             return View(purchases);
         }
 
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
-            return View();
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var favorites = await _userService.GetUserFavoritedMovies(userId);
+            return View(favorites);
         }
 
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            return View();
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var userDetails = await _userService.GetUserDetails(userId);
+            return View(userDetails);
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditPorfile()
+        public IActionResult EditProfile()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(UserDetailsModel model)
+        {
+            var success = await _userService.EditUserProfile(model);
+            if (!success)
+            {
+                return View("Error");
+            }
+            return LocalRedirect("~/");
         }
     }
 }
