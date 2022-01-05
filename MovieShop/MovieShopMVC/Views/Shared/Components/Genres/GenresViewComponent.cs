@@ -1,7 +1,7 @@
 ﻿using ApplicationCore.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MovieShopMVC.Views.Shared.Components
+namespace MovieShopMVC.Views.Shared.Components.Genres
 {
     public class GenresViewComponent: ViewComponent
     {

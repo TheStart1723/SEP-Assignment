@@ -19,11 +19,17 @@ builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<ICastService, CastService>();
 
 // Repository Injection
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICastRepository, CastRepository>();
+builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
 builder.Services.AddDbContext<MovieShopDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("MovieShopDbConnection"))
@@ -39,6 +45,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(b =>
+{
+    b.WithOrigins(builder.Configuration.GetValue<string>("spaClientUrl")).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+});
 
 app.UseHttpsRedirection();
 

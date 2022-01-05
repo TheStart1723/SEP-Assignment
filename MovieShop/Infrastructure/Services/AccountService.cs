@@ -19,12 +19,32 @@ namespace Infrastructure.Services
         {
             _userRepository = userRepository;
         }
+
+        public async Task<List<UserDetailsModel>> GetAllAccount()
+        {
+            var accounts = await _userRepository.GetAll();
+            var accountModel = new List<UserDetailsModel>();
+            foreach (var account in accounts)
+            {
+                accountModel.Add(new UserDetailsModel
+                {
+                    Id = account.Id,
+                    FirstName = account.FirstName,
+                    LastName = account.LastName,
+                    PhoneNumber = account.PhoneNumber,
+                    DateOfBirth = account.DateOfBirth,
+                    Email = account.Email,
+                });
+            }
+            return accountModel;
+        }
+
         public async Task<int> RegisterUser(UserRegisterRequestModel model)
         {
             var dbUser = await _userRepository.GetUserByEmail(model.Email);
             if (dbUser != null)
             {
-                throw new Exception("Email already exists and please check");
+                return -1;
             }
             var salt = GenerateSalt();
             var hashedPassword = GetHashedPassword(model.Password, salt);

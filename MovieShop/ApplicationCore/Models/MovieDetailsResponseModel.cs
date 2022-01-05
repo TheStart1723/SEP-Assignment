@@ -13,6 +13,7 @@ namespace ApplicationCore.Models
             Genres = new List<GenreModel>();
             Trailers = new List<TrailerReponseModel>();
             Casts = new List<CastResponseModel>();
+            Purchases = new List<PurchaseMovieModel>();
         }
         public int Id { get; set; }
         public string Title { get; set; }
@@ -33,6 +34,7 @@ namespace ApplicationCore.Models
         public List<TrailerReponseModel> Trailers { get; set; }
         public List<GenreModel> Genres { get; set; }
         public List<CastResponseModel> Casts { get; set; }
+        public List<PurchaseMovieModel> Purchases { get; set; }
 
     }
 }

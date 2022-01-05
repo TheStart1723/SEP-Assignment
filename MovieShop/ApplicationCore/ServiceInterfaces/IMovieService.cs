@@ -11,5 +11,9 @@ namespace ApplicationCore.ServiceInterfaces
     {
         Task<IEnumerable<MovieCardResponseModel>> GetHighestGrossingMovies();
         Task<MovieDetailsResponseModel> GetMovieDetailsById(int id);
+        Task<IEnumerable<MovieCardResponseModel>> GetAllMovies();
+        Task<IEnumerable<MovieCardResponseModel>> GetTopRatedMovies();
+        Task<IEnumerable<MovieCardResponseModel>> GetMoviesByGenre(int genreId);
+        Task<IEnumerable<ReviewRequestModel>> GetReviews(int id);
     }
 }

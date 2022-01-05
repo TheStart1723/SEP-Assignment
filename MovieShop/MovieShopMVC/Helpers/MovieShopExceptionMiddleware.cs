@@ -44,7 +44,7 @@ namespace MovieShopMVC.Helpers
                 StackTrace = ex.StackTrace,
                 InnerException = ex.InnerException,
                 Url = context.Request.Path,
-                IsAuthenticated = context.User.Identity.IsAuthenticated,
+                IsAuthenticated = context.User.Identity?.IsAuthenticated,
                 UserId = Convert.ToInt32(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
             };
 

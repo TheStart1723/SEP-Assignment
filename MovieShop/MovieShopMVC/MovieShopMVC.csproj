@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DbScripts\**" />
+    <Content Remove="DbScripts\**" />
+    <EmbeddedResource Remove="DbScripts\**" />
+    <None Remove="DbScripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap-dialog" Version="3.3.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
@@ -24,10 +31,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DbScripts\" />
   </ItemGroup>
 
 </Project>

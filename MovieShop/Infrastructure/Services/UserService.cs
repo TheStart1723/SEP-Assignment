@@ -13,9 +13,15 @@ namespace Infrastructure.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IReviewRepository _reviewRepository;
+        private readonly IFavoriteRepository _favoriteRepository;
+        public UserService(IUserRepository userRepository, IPurchaseRepository purchaseRepository, IFavoriteRepository favoriteRepository, IReviewRepository reviewRepository)
         {
             _userRepository = userRepository;
+            _purchaseRepository = purchaseRepository;
+            _reviewRepository = reviewRepository;
+            _favoriteRepository = favoriteRepository;
         }
         public async Task<bool> EditUserProfile(UserDetailsModel model)
         {
@@ -87,6 +93,95 @@ namespace Infrastructure.Services
                 });
             }
             return purchases;
+        }
+        public async Task<List<ReviewRequestModel>> GetUserReviews(int id)
+        {
+            var user = await _userRepository.GetById(id);
+            var reviews = new List<ReviewRequestModel>();
+            foreach (var review in user.ReviewsofUser)
+            {
+                reviews.Add(new ReviewRequestModel
+                {
+                    UserId = review.UserId,
+                    MovieId = review.MovieId,
+                    Rating = review.Rating,
+                    ReviewText = review.ReviewText,
+                });
+            }
+            return reviews;
+        }
+        public async Task<bool> CheckUserFavorite(int id, int movieId)
+        {
+            var user = await _userRepository.GetById(id);
+            if(user == null) return false;
+            foreach(var favorite in user.Favorites)
+            {
+                if (movieId == favorite.MovieId) return true;
+            }
+            return false;
+        }
+        public async Task<int> UserPurchase(PurchaseRequestModel model)
+        {
+            var dbPurchase = await _purchaseRepository.GetPurchaseByNumber(model.PurchaseNumber);
+            if(dbPurchase != null) return -1;
+            var purchase = new Purchase
+            {
+                PurchaseNumber = model.PurchaseNumber,
+                MovieId = model.MovieId,
+                UserId = model.UserId,
+                PurchaseDateTime = model.PurchaseDateTime,
+                TotalPrice = model.TotalPrice,
+            };
+            var createdPurchase = await _purchaseRepository.Add(purchase);
+            return createdPurchase.Id;
+
+        }
+        public async Task<int> UserFavorite(FavoriteRequestModel model)
+        {
+            var dbFavorite = await _favoriteRepository.GetFavorite(model.UserId, model.MovieId);
+            if (dbFavorite != null) return -1;
+            var favorite = new Favorite
+            {
+                MovieId = model.MovieId,
+                UserId = model.UserId
+            };
+            var createdFavorite = await _favoriteRepository.Add(favorite);
+            return createdFavorite.Id;
+        }
+        public async Task<bool> UserReview(ReviewRequestModel model)
+        {
+            var dbReview = await _reviewRepository.GetReview(model.UserId, model.MovieId);
+            if (dbReview != null) return false;
+            var review = new Review
+            {
+                MovieId = model.MovieId,
+                UserId = model.UserId,
+                Rating = model.Rating,
+                ReviewText = model.ReviewText,
+            };
+            await _reviewRepository.Add(review);
+            return true;
+        }
+        public async Task<bool> DeleteFavorite(int userId, int movieId)
+        {
+            var dbFavorite = await _favoriteRepository.GetFavorite(userId, movieId);
+            if (dbFavorite == null) return false;
+            await _favoriteRepository.Delete(dbFavorite.Id);
+            return true;
+        }
+        public async Task<bool> EditReview(ReviewRequestModel model)
+        {
+            var dbReview = await _reviewRepository.GetReview(model.UserId, model.MovieId);
+            if (dbReview == null) return false;
+            var review = new Review
+            {
+                UserId = model.UserId,
+                MovieId = model.MovieId,
+                ReviewText = model.ReviewText,
+                Rating = model.Rating,
+            };
+            await _reviewRepository.Update(review);
+            return true;
         }
     }
 }

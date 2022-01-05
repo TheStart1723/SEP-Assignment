@@ -10,9 +10,11 @@ namespace MovieShop.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService)
+        private readonly IUserService _userService;
+        public AccountController(IAccountService accountService, IUserService userService)
         {
             _accountService = accountService;
+            _userService = userService;
         }
         [HttpPost]
         [Route("login")]
@@ -24,6 +26,30 @@ namespace MovieShop.API.Controllers
                 return Unauthorized("Wrong email/password");
             }
             return Ok(user);
+        }
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetAccountDetailsById(int id)
+        {
+            var user = await _userService.GetUserDetails(id);
+            if (user == null) return NotFound();
+            return Ok(user);
+        }
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetAllAccounts()
+        {
+            var accounts = await _accountService.GetAllAccount();
+            if(!accounts.Any()) return NotFound();
+            return Ok(accounts);
+        }
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> Register([FromBody] UserRegisterRequestModel model)
+        {
+            var id = await _accountService.RegisterUser(model);
+            if (id == -1) return Conflict();
+            return Created("/api/Account/{id}",id);
         }
     }
 }

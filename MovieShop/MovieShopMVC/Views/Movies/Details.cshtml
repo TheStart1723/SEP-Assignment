@@ -1,4 +1,5 @@
 ﻿@model ApplicationCore.Models.MovieDetailsResponseModel
+@using System.Security.Claims
 
 <div class=-moz-text-size-adjustainer">
      <div class="row special-row" style="background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('@Model.BackdropUrl') no-repeat">
@@ -28,8 +29,20 @@
                <p style="padding-top: 50px">
                     <a href="#" class="btn btn-outline-light disabled" tabindex="-1" role="button" aria-disabled="true" style="width:100px">REVIEW</a>
                </p>
-               <p>
-                    <a href="#" class="btn btn-light disabled" tabindex="-1" role="button" aria-disabled="true" style="width:100px">BUY @Model.Price.Value.ToString("C2")</a>
+               <p>                    
+                    @foreach (var purchase in Model.Purchases)
+                    {
+                        if (Convert.ToInt32(ClaimTypes.NameIdentifier) == purchase.UserId)
+                        {
+                            <a href="#" class="btn btn-light disabled" tabindex="-1" role="button" aria-disabled="true" style="width:100px">WATCH MOVIE</a>
+                            break;
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-light disabled" tabindex="-1" role="button" aria-disabled="true" style="width:100px">BUY @Model.Price.Value.ToString("C2")</a>
+
+                        }
+                    }
                </p>
           </div>
      </div>

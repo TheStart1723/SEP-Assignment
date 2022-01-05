@@ -82,7 +82,55 @@ namespace Infrastructure.Services
                 movieDetails.Genres.Add(new GenreModel { Id = movieGenres.GenreId, Name = movieGenres.Genre.Name });
             }
 
+            foreach (var purchase in movie.Purchases)
+            {
+                movieDetails.Purchases.Add(new PurchaseMovieModel { Id = purchase.Id, MovieId = purchase.MovieId, UserId = purchase.UserId });
+            }
+
             return movieDetails;
+        }
+
+        public async Task<IEnumerable<MovieCardResponseModel>> GetAllMovies()
+        {
+            var movies = await _movieRepository.GetAll();
+            var movieCards = new List<MovieCardResponseModel>();
+            foreach (var movie in movies)
+            {
+                movieCards.Add(new MovieCardResponseModel { Id = movie.Id, PosterUrl = movie.PosterUrl, Title = movie.Title });
+            }
+            return movieCards;
+        }
+
+        public async Task<IEnumerable<MovieCardResponseModel>> GetTopRatedMovies()
+        {
+            var movieIds = await _movieRepository.Get30HighestRatedMovies();
+            var movieCards = new List<MovieCardResponseModel>();
+            foreach (var id in movieIds)
+            {
+                var movie = await _movieRepository.GetById(id);
+                movieCards.Add(new MovieCardResponseModel { Id = movie.Id, PosterUrl= movie.PosterUrl, Title= movie.Title });
+            }
+            return movieCards;
+        }
+        public async Task<IEnumerable<MovieCardResponseModel>> GetMoviesByGenre(int genreId)
+        {
+            var movies = await _movieRepository.GetMoviesByGenreId(genreId);
+            var movieCards = new List<MovieCardResponseModel>();
+            foreach (var movie in movies)
+            {
+                movieCards.Add(new MovieCardResponseModel { Id = movie.Id, PosterUrl = movie.PosterUrl, Title = movie.Title });
+            }
+            return movieCards;
+        }
+        public async Task<IEnumerable<ReviewRequestModel>> GetReviews(int id)
+        {
+            var movie = await _movieRepository.GetById(id);
+            var reviews = new List<ReviewRequestModel>();
+            foreach (var review in movie.Reviews)
+            {
+                reviews.Add(new ReviewRequestModel { MovieId = review.MovieId, Rating = review.Rating, ReviewText = review.ReviewText, UserId = review.UserId });
+            }
+            return reviews;
         }
     }
 }

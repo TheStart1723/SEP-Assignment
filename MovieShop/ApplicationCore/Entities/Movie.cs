@@ -36,6 +36,6 @@ namespace ApplicationCore.Entities
         public List<MovieGenre> GenresofMovie { get; set; }
         public List<MovieCast> CastsofMovie { get; set; }
         public List<MovieCrew> CrewsofMovie { get; set; }
-        public List<Review> ReviewsofMovie { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

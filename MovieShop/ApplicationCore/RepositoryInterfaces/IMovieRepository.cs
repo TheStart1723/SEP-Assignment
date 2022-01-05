@@ -10,5 +10,7 @@ namespace ApplicationCore.RepositoryInterfaces
     public interface IMovieRepository: IRepository<Movie>
     {
         Task<IEnumerable<Movie>> Get30HighestGrossingMovies();
+        Task<IEnumerable<int>> Get30HighestRatedMovies();
+        Task<IEnumerable<Movie>> GetMoviesByGenreId(int genreId);
     }
 }
